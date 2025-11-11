@@ -1,5 +1,7 @@
 # Proyecto: Tienda de Accesorios - Consultas MongoDB
 
+## Auctor: Carlos Andres Londoño Moscoso
+
 Este proyecto contiene las consultas básicas y de agregación utilizadas en la **Fase 4** del trabajo académico sobre bases de datos **NoSQL**, específicamente con **MongoDB**. Se basa en un caso de uso de una tienda online de accesorios y joyas.
 
 ---
@@ -131,9 +133,3 @@ db.productos.aggregate([
 ])
 ```
 
----
-
-## Notas finales
-- Guarda este archivo con la extensión `.js` para usarlo en Mongo Shell o VS Code.
-- Si lo vas a subir a GitHub, puedes incluir este archivo en una carpeta `/src` o `/scripts` dentro del repositorio.
-- Puedes agregar un archivo **README.md** adicional para documentar el propósito general del proyecto.
