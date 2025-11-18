@@ -25,6 +25,45 @@ Crea o selecciona la base de datos `tienda_accesorios` y asegúrate de estar en 
 copiar y pegar cada bloque en la consola de **MongoDB Compass** o ejecutarlas desde el **Mongo Shell**.
 
 ---
+## Diseño de la base de datos Nosql
+                 ┌──────────────────────┐
+                 │      productos       │
+                 ├──────────────────────┤
+                 │ _id                  │
+                 │ nombre               │
+                 │ categoria            │
+                 │ precio               │
+                 │ stock                │
+                 │ material             │
+                 │ color                │
+                 └──────────────────────┘
+
+                 ┌──────────────────────┐
+                 │       clientes       │
+                 ├──────────────────────┤
+                 │ _id                  │
+                 │ nombre               │
+                 │ correo               │
+                 │ direccion            │
+                 │ telefono             │
+                 └──────────────────────┘
+
+                 ┌──────────────────────┐
+                 │        pedidos       │
+                 ├──────────────────────┤
+                 │ _id                  │
+                 │ cliente_id           │───→ referencia a clientes._id
+                 │ fecha                │
+                 │ total                │
+                 │ productos: [         │
+                 │   { producto_id → productos._id,
+                 │     cantidad,
+                 │     subtotal }       │
+                 │ ]                    │
+                 └──────────────────────┘
+
+
+---
 
 ## Consultas MongoDB
 
