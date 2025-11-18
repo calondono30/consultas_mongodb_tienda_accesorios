@@ -14,7 +14,7 @@ use('tienda_accesorios');
 // =============================================================
 
 // Insertar productos iniciales , en total se insertaron 114 documentos para los cuales se deja la evidencia 
-// en la imagen en el documento de entrega.
+// en la imagen del documento final de entrega.
 
 db.productos.insertMany([
   {
