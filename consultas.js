@@ -1,14 +1,19 @@
-// ==========================================
+// =============================================================
 // BASE DE DATOS: tienda_accesorios
-// AUTOR: Carlos Andres Londoño Moscoso
-// ==========================================
+// AUTOR: Carlos Andrés Londoño Moscoso
+// DESCRIPCIÓN: Script completo para inserción, consulta, 
+// actualización, eliminación y agregación de datos.
+// =============================================================
+
+// Selección de la base de datos
 use('tienda_accesorios');
 
-// ==========================================
-// COLECCIÓN: productos
-// ==========================================
 
-// Inserción de varios productos
+// =============================================================
+// COLECCIÓN: productos
+// =============================================================
+
+// Insertar productos iniciales
 db.productos.insertMany([
   {
     nombre: "Anillo de plata",
@@ -39,32 +44,53 @@ db.productos.insertMany([
   }
 ]);
 
+
 // Consultar todos los productos
 db.productos.find();
+
 
 // Consultar productos con stock menor a 20
 db.productos.find({ stock: { $lt: 20 } });
 
-// Actualizar el stock de un producto
+
+// =============================================================
+// ACTUALIZAR EL STOCK DE UN PRODUCTO
+// =============================================================
+// Descripción: permite modificar la cantidad disponible en inventario.
+// Usado para entradas de mercancía o corrección de inventarios.
 db.productos.updateOne(
-  { nombre: "Anillo de plata" },
-  { $set: { stock: 30 } }
+  { nombre: "Anillo de plata" },   // Filtro de búsqueda
+  { $set: { stock: 30 } }          // Actualización del campo
 );
 
-// Eliminar un producto por nombre
-db.productos.deleteOne({ nombre: "Pulsera de cuero" });
 
-// Contar el total de productos
+// =============================================================
+// ELIMINAR UN PRODUCTO
+// =============================================================
+// Descripción: elimina un producto del catálogo. 
+// Usado cuando un artículo está descatalogado o agotado definitivamente.
+// NOTA: "Pulsera de cuero" no existe en la inserción inicial, 
+// pero se deja como ejemplo instructivo.
+db.productos.deleteOne({
+  nombre: "Pulsera de cuero"
+});
+
+
+// =============================================================
+// CONTAR EL TOTAL DE PRODUCTOS
+// =============================================================
+// Descripción: etapa de agregación que devuelve cuántos productos 
+// hay registrados en la colección.
 db.productos.aggregate([
   { $count: "total_productos" }
 ]);
 
 
-// ==========================================
+// =============================================================
 // COLECCIÓN: clientes
-// ==========================================
+// =============================================================
 
-// Inserción de varios clientes
+// Insertar clientes
 db.clientes.insertMany([
   {
     nombre: "María López",
@@ -92,23 +118,23 @@ db.clientes.find();
 // Buscar cliente por ciudad
 db.clientes.find({ ciudad: "Bogotá" });
 
-// Actualizar teléfono de un cliente
+// Actualizar teléfono de cliente
 db.clientes.updateOne(
   { nombre: "Carlos Pérez" },
   { $set: { telefono: "3000000000" } }
 );
 
-// Contar el total de clientes
+// Contar clientes
 db.clientes.aggregate([
   { $count: "total_clientes" }
 ]);
 
 
-// ==========================================
+// =============================================================
 // COLECCIÓN: pedidos
-// ==========================================
+// =============================================================
 
-// Inserción de pedidos
+// Insertar pedidos
 db.pedidos.insertMany([
   {
     cliente: "María López",
@@ -134,25 +160,32 @@ db.pedidos.insertMany([
 // Consultar todos los pedidos
 db.pedidos.find();
 
-// Buscar pedidos enviados
+// Buscar pedidos por estado
 db.pedidos.find({ estado: "Enviado" });
 
-// Actualizar el estado de un pedido
+// Actualizar estado de un pedido
 db.pedidos.updateOne(
   { cliente: "Carlos Pérez" },
   { $set: { estado: "Entregado" } }
 );
 
-// Contar el total de pedidos
+// Contar pedidos
 db.pedidos.aggregate([
   { $count: "total_pedidos" }
 ]);
 
-// Obtener el valor total de todos los pedidos
+
+// Obtener valor total de ventas
 db.pedidos.aggregate([
-  { $group: { _id: null, valor_total_ventas: { $sum: "$total" } } }
+  {
+    $group: {
+      _id: null,
+      valor_total_ventas: { $sum: "$total" }
+    }
+  }
 ]);
 
-// ==========================================
+
+// =============================================================
 // FIN DEL SCRIPT
-// ==========================================
+// =============================================================
