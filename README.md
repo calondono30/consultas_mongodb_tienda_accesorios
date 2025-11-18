@@ -28,7 +28,7 @@ copiar y pegar cada bloque en la consola de **MongoDB Compass** o ejecutarlas de
 
 ## Consultas MongoDB
 
-### 1. Inserción de datos
+### 1. Inserción de datos - Se realiza el proceso de 114 registros
 ```javascript
 db.productos.insertMany([
   { nombre: "Anillo de plata", categoria: "Joyas", precio: 95000, stock: 25, material: "Plata 925", color: "Plateado" },
@@ -132,4 +132,6 @@ db.productos.aggregate([
   }
 ])
 ```
+Conclusiones
+MongoDB demostró ser una herramienta flexible para la gestión de datos no estructurados, permitiendo almacenar información con estructuras variables. Las consultas de agregación facilitaron el análisis estadístico del inventario, mientras que las operaciones de actualización y eliminación permitieron gestionar adecuadamente el catálogo.
 
