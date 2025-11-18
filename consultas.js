@@ -13,7 +13,9 @@ use('tienda_accesorios');
 // COLECCIÓN: productos
 // =============================================================
 
-// Insertar productos iniciales
+// Insertar productos iniciales , en total se insertaron 114 documentos para los cuales se deja la evidencia 
+// en la imagen en el documento de entrega.
+
 db.productos.insertMany([
   {
     nombre: "Anillo de plata",
